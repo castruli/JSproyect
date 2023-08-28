@@ -2,6 +2,10 @@
 function start () {
     alert ('Bienvenido')
 }
+function completed (){
+    alert ('¡Carga completa!')
+}
+
 
 function premium (){
     alert ('Opción disponible para usuarios premium')
@@ -46,6 +50,7 @@ if (cantParticipantes < 10){
     const mail = prompt('Ingrese mail')
     const banco = prompt ('Ingrese Banco')
     const cbu = prompt ('Ingrese CBU')
+    completed ()   
     const participante = new ingresoParticipantes(nombre, mail, banco, cbu)
     datosParticipantes.push(participante)
   }
@@ -55,7 +60,10 @@ if (cantParticipantes < 10){
   seleccCategoria ()
   console.log (tiposCategorias)
   const categorias = prompt ('Ingrese categoria')
-  const numeroDeComprobantes = parseInt(prompt('Ingrese cantidad de comprobantes a registrar'))
+  let numeroDeComprobantes = parseInt(prompt('Ingrese cantidad de comprobantes a registrar'))
+  while (isNaN(numeroDeComprobantes)){
+    numeroDeComprobantes = prompt( 'ingrese un monto válido')
+}
 
 
 class ingresoComprobantes {
@@ -72,9 +80,9 @@ class ingresoComprobantes {
       const fecha = prompt('Ingrese fecha')
       const importe = parseFloat(prompt ('Ingrese Monto'))
       const abonado = prompt ('¿Quién abono?')
-
+      completed ()
       const comprobante = new ingresoComprobantes(categoria,fecha,importe,abonado)
-      datosComprobantes.push(ingresoComprobantes)
+      datosComprobantes.push(comprobante)
     }
     console.log (datosComprobantes)
 
@@ -83,9 +91,7 @@ class ingresoComprobantes {
 
 let cantidadDeComprobantes = parseInt(prompt('ingrese la cantidad de comprobantes a cargar'))
 console.log (cantidadDeComprobantes)
-while (isNaN(cantidadDeComprobantes)){
-    cantidadDeComprobantes = prompt( 'ingrese un monto válido')
-}
+
 
 
 
