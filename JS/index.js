@@ -95,7 +95,6 @@ if (cantParticipantes < 10){
     console.log(totalImporte)
 
     alert ('El total ingresado es de $' + ' ' + totalImporte + ' en la categoria' + ' ' + categorias)
-
 }
 else {
      premium ()
