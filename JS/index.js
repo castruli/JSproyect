@@ -1,29 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function start () {
     alert ('Bienvenido')
 }

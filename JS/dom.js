@@ -1,15 +1,5 @@
-class ingresoComprobantes {
-    constructor (fecha, importe, categoria,usuario){
-        this.fecha = fecha
-        this.importe = importe
-        this.categoria = categoria
-        this.usuario = usuario
-    }
-}
 
-
-
-// DOM CARGA DATOS POR EL USUARIO //
+// DOM CARGA DATOS POR EL USUARIO 
 const formComprobante = document.getElementById('ingresoComprobante')
 const ingresoFecha = document.getElementById('ingresoFecha')
 const ingresoImporte = document.getElementById('ingresoImporte')
@@ -18,17 +8,23 @@ const seleccionUsuario = document.getElementById('seleccionUsuario')
 const optionUsuario = document.getElementById('optionUsuarios')
 
 
-//DOM SALIDA DATOS DEL USUARIO //
+//DOM SALIDA DATOS DEL USUARIO 
 const dataTable = document.getElementById('dataTable');
 const tbody = dataTable.querySelector('tbody');
-
 const alertComprobantes = document.getElementById('alertComprobantes')
 
 
+// CLASS PARA EL INGRESO DE COMPROBANTES
+class ingresoComprobantes {
+    constructor (fecha, importe, categoria,usuario){
+        this.fecha = fecha
+        this.importe = importe
+        this.categoria = categoria
+        this.usuario = usuario
+    }
+}
+// ARRAY + LOCALSTORAGE POR CARGA COMPROBANTES
 
-
-
-// Creo array con datos desde localStorage, si los hay.
 let datosComprobantes = []
 const jsonComprobantes = localStorage.getItem('comprobantes')
     if (jsonComprobantes){
@@ -36,31 +32,29 @@ const jsonComprobantes = localStorage.getItem('comprobantes')
     }
     agregarComprobante ()
 
-// Guardado de datos ingresados mediante form en Array y localStorage
+// INGRESO DATOS USUARIO
 
 formComprobante.addEventListener('submit', (e) => {
 e.preventDefault()
 const comprobante = new ingresoComprobantes (ingresoFecha.value, ingresoImporte.value, ingresoCategoria.value, seleccionUsuario.value)
 datosComprobantes.push(comprobante)
 localStorage.setItem('comprobantes', JSON.stringify(datosComprobantes))
-//limpio el form
+// BORRADO INGRESO DATOS
 ingresoFecha.value = '';
 ingresoImporte.value = '';
 ingresoCategoria.value = '';
 seleccionUsuario.value = '';
-//aplicado función para carga de datos en table
+// FUNCION DE CARGA DE COMPROBANTES
 agregarComprobante ()
-
 })
 
 
-// carga de comprobante en table
+// DEFINICION DE FUNCION PARA LA CARGA DE COMPROBANTES
 function agregarComprobante (){
 
-    // limpio table
+    // RESET TABLA
     tbody.innerHTML = '';
-    // lleno la table con datos cargados, si los hay
-    // ¿¿¿¿¿¿PUEDO UTILIZAR FUNCION ANONIMA???? VER VER VER 
+    // DATOS A CARGAR EN LA TABLA
     datosComprobantes.forEach ( function (dato){
         const newComprobante = document.createElement("tr");
         newComprobante.innerHTML =`
@@ -71,16 +65,11 @@ function agregarComprobante (){
             `;
         bodyTable.appendChild(newComprobante);
         });
-
+    // ALERTA CON TABLA SIN DATOS
         if (datosComprobantes.length > 0) {
             alertComprobantes.style.display = "none";
           } else {
             alertComprobantes.style.display = "block";
           }
     }
-    agregarComprobante ()
-
-
-
-
 console.log(datosComprobantes)
