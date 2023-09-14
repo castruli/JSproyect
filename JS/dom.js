@@ -18,11 +18,9 @@ const seleccionUsuario = document.getElementById('seleccionUsuario')
 
 
 //DOM SALIDA DATOS DEL USUARIO //
-// const fechaTable = document.getElementById ('fechaTable')
-// const ingresoTable = document.getElementById ('ingresoTable') 
-// const categoriaTable = document.getElementById ('categoriaTable')
-// const usuarioTable = document.getElementById ('usuarioTable')
-const bodyTable = document.getElementById('bodyTable')
+const dataTable = document.getElementById('dataTable');
+const tbody = dataTable.querySelector('tbody');
+
 const alertComprobantes = document.getElementById('alertComprobantes')
 
 
@@ -30,7 +28,7 @@ const alertComprobantes = document.getElementById('alertComprobantes')
 
 // REVISAR ESTA FUNCION. AL ACTUALZIAR PAGINA NO VUELVE A TRAER DATOS, DUPLICA EL INGRESO EN CADA LINEA, NO GUARDA ARRAY
 
-
+// Creo array con datos desde localStorage, si los hay.
 let datosComprobantes = []
 const jsonComprobantes = localStorage.getItem('comprobantes')
     if (jsonComprobantes){
@@ -38,73 +36,51 @@ const jsonComprobantes = localStorage.getItem('comprobantes')
     }
     agregarComprobante ()
 
-
+// Guardado de datos ingresados mediante form en Array y localStorage
 
 formComprobante.addEventListener('submit', (e) => {
 e.preventDefault()
 const comprobante = new ingresoComprobantes (ingresoFecha.value, ingresoImporte.value, ingresoCategoria.value, seleccionUsuario.value)
 datosComprobantes.push(comprobante)
 localStorage.setItem('comprobantes', JSON.stringify(datosComprobantes))
+//limpio el form
+ingresoFecha.value = '';
+ingresoImporte.value = '';
+ingresoCategoria.value = '';
+seleccionUsuario.value = '';
+//aplicado función para carga de datos en table
 agregarComprobante ()
 
-      ingresoFecha.value = '';
-      ingresoImporte.value = '';
-      ingresoCategoria.value = '';
-      seleccionUsuario.value = '';
 })
 
 
-
+// carga de comprobante en table
 function agregarComprobante (){
-    const newComprobante = document.createElement("tr");
 
-   
-    const fechaTable = document.createElement("td");
-    const ingresoTable = document.createElement("td");
-    const categoriaTable = document.createElement("td");
-    const usuarioTable = document.createElement("td");
+    // limpio table
+    tbody.innerHTML = '';
+    // lleno la table con datos cargados, si los hay
+    // ¿¿¿¿¿¿PUEDO UTILIZAR FUNCION ANONIMA???? VER VER VER 
+    datosComprobantes.forEach ( function (dato){
+        const newComprobante = document.createElement("tr");
+        newComprobante.innerHTML =`
+            <td>${dato.fecha}</td>
+            <td>${dato.importe}</td>
+            <td>${dato.categoria}</td>
+            <td>${dato.usuario}</td>
+            `;
+        bodyTable.appendChild(newComprobante);
+        });
 
-    const bFechaTable = datosComprobantes.map( f => f.fecha)
-    const bIngresoTable = datosComprobantes.map( i => i.importe) 
-    const bCategoriaTable = datosComprobantes.map( c => c.categoria)
-    const bUsuarioTable = datosComprobantes.map( u => u.usuario)
-   
-    fechaTable.innerHTML = ''
-    ingresoTable.innerHTML = ''
-    categoriaTable.innerHTML = ''
-    usuarioTable.innerHTML = ''
-
-    fechaTable.innerHTML = bFechaTable
-    ingresoTable.innerHTML = bIngresoTable 
-    categoriaTable.innerHTML = bCategoriaTable
-    usuarioTable.innerHTML = bUsuarioTable
-
-
-    newComprobante.appendChild(fechaTable);
-    newComprobante.appendChild(ingresoTable);
-    newComprobante.appendChild(categoriaTable);
-    newComprobante.appendChild(usuarioTable);
-
-   
-    bodyTable.appendChild(newComprobante);    
+        if (datosComprobantes.length > 0) {
+            alertComprobantes.style.display = "none";
+          } else {
+            alertComprobantes.style.display = "block";
+          }
+    }
+    agregarComprobante ()
 
 
-    if (datosComprobantes.length > 0) {
-        alertComprobantes.style.display = "none";
-      } else {
-        alertComprobantes.style.display = "block";
-      }
-    
-
-}
-
-
-
-
-    // const fecha = ingresoFecha.value;    
-    // const importe = ingresoImporte.value;
-    // const categoria = ingresoCategoria.value;
-    // const usuario = seleccionUsuario.value;
 
 
 console.log(datosComprobantes)
