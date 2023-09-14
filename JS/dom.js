@@ -15,6 +15,7 @@ const ingresoFecha = document.getElementById('ingresoFecha')
 const ingresoImporte = document.getElementById('ingresoImporte')
 const ingresoCategoria = document.getElementById('ingresoCategoria') 
 const seleccionUsuario = document.getElementById('seleccionUsuario')
+const optionUsuario = document.getElementById('optionUsuarios')
 
 
 //DOM SALIDA DATOS DEL USUARIO //
@@ -26,7 +27,6 @@ const alertComprobantes = document.getElementById('alertComprobantes')
 
 
 
-// REVISAR ESTA FUNCION. AL ACTUALZIAR PAGINA NO VUELVE A TRAER DATOS, DUPLICA EL INGRESO EN CADA LINEA, NO GUARDA ARRAY
 
 // Creo array con datos desde localStorage, si los hay.
 let datosComprobantes = []
