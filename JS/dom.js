@@ -1,5 +1,6 @@
 
-// DOM CARGA DATOS POR EL USUARIO 
+// DOM CARGA DATOS POR EL USUARIO - COMPROBANTES
+
 const formComprobante = document.getElementById('ingresoComprobante')
 const ingresoFecha = document.getElementById('ingresoFecha')
 const ingresoImporte = document.getElementById('ingresoImporte')
@@ -7,11 +8,23 @@ const ingresoCategoria = document.getElementById('ingresoCategoria')
 const seleccionUsuario = document.getElementById('seleccionUsuario')
 const optionUsuario = document.getElementById('optionUsuarios')
 
+// DOM CARGA DATOS POR EL USUARIO - USUARIOS
+const tableUsuarios = document.getElementById('tableUsuarios');
+const tbodyUsuarios = tableUsuarios.querySelector('tbody');
+const alertUsuarios = document.getElementById('alertUsuarios');
+const imputParticipante = document.getElementById('imputParticipante')
 
-//DOM SALIDA DATOS DEL USUARIO 
-const dataTable = document.getElementById('dataTable');
-const tbody = dataTable.querySelector('tbody');
+
+
+
+
+//DOM SALIDA DATOS COMPROBANTES
+const tableComprobantes = document.getElementById('tableComprobantes');
+const tbodyComprobantes = tableComprobantes.querySelector('tbody');
 const alertComprobantes = document.getElementById('alertComprobantes')
+
+
+
 
 
 // CLASS PARA EL INGRESO DE COMPROBANTES
@@ -53,7 +66,7 @@ agregarComprobante ()
 function agregarComprobante (){
 
     // RESET TABLA
-    tbody.innerHTML = '';
+    tbodyComprobantes.innerHTML = '';
     // DATOS A CARGAR EN LA TABLA
     datosComprobantes.forEach ( function (dato){
         const newComprobante = document.createElement("tr");
@@ -63,7 +76,7 @@ function agregarComprobante (){
             <td>${dato.categoria}</td>
             <td>${dato.usuario}</td>
             `;
-        bodyTable.appendChild(newComprobante);
+        bodyTableComprobantes.appendChild(newComprobante);
         });
     // ALERTA CON TABLA SIN DATOS
         if (datosComprobantes.length > 0) {
@@ -73,3 +86,4 @@ function agregarComprobante (){
           }
     }
 console.log(datosComprobantes)
+

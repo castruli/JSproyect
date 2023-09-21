@@ -7,9 +7,12 @@
     <link rel="shortcut icon" href="./archivosMultimedia/logo1.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
 </head>
 <body>
 <header>
+  <!-- Estructura de Menu hamburguesa -->
     <nav class="navbar bg-warning">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"> 
@@ -25,22 +28,22 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Control</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="./index.html#alojamiento" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Conceptos
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">Alojamiento</a></li>
-                  <li><a class="dropdown-item" href="#">Traslado</a></li>
-                  <li><a class="dropdown-item" href="#">Salidas</a></li>
-                  <li><a class="dropdown-item" href="#">Día a día</a></li>
-                  <li><a class="dropdown-item" href="#">Higiene</a></li>
-                  <li><a class="dropdown-item" href="#">Otros</a></li>
+                  <li><a class="dropdown-item" href="./index.html#alojamiento">Alojamiento</a></li>
+                  <li><a class="dropdown-item" href="./index.html#traslados">Traslado</a></li>
+                  <li><a class="dropdown-item" href="./index.html#salidas">Salidas</a></li>
+                  <li><a class="dropdown-item" href="./index.html#dia">Día a día</a></li>
+                  <li><a class="dropdown-item" href="./index.html#higiene">Higiene</a></li>
+                  <li><a class="dropdown-item" href="./index.html#otros">Otros</a></li>
                 </ul>
               </li>
             </ul>
@@ -54,40 +57,57 @@
   </nav>
 </header>
 <main>
-  <section class="container-fluid">
-
+  <!-- Estructura ingreso de Usuarios -->
+  <section class="container-fluid bg-dark-subtle">
     <div class="row" >
+          <!-- Detalle participantes ingresados -->
+      <h3 class="txtCenter">Listado de participantes</h3>
       <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 bg-dark-subtle">
-        <p>Listado de participantes</p>
         <div>
-          <button type="submit" class="btn btn-warning newParticipante">Nuevo Participante</button>
-        </div>
-        
-
-
-
-
-      </div>
-      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 bg-dark-subtle p-4">
+          <table id="tableUsuarios" class="table">
+            <thead>
+              <tr>
+                <th class="bg-dark-subtle" scope="col">Nombre y Apellido</th>         
+                <th class="bg-dark-subtle" scope="col">Banco</th>
+                <th class="bg-dark-subtle" scope="col">CBU</th>
+              </tr>
+            </thead>
+            <tbody id="bodyTableUsuarios"> 
+            </tbody>
+          </table>
+          <p id="alertUsuarios">No existen Usuarios para este presupuesto</p>
+          <div id="newParticipante">
+            <button type="imput" id="imputParticipante" class="btn btn-warning btnNewParticipante">Nuevo Participante</button>
+          </div>
+        </div>   
+        </div>    
+      <!-- Detalle Login -->
+      <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 bg-dark-subtle"></div>
+      <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 bg-dark-subtle">
         <div class="row">
           <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+            <h5>Iniciar Sesión</h5>
             <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
             <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido">    
             <input type="password" id="Password" class="form-control" aria-describedby="descripcionPassword" placeholder="Contraseña" aria-label="password">        
             <span id="descripcionPassword" class="form-text">
               Ingrese entre 8 a 20 caracteres.
             </span>
+            <button class="btn btn-warning btnNewParticipante">Login</button>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
+  <!-- Detalle de ingreso de presupuesto -->
+  <!-- <p> La idea sería que le usuario crea un presupuesto en donde cargue datos de los participates, pudiendo asignarle un nombre</p> -->
+  <!-- Detalle de seleccion de presupuestos creados -->
+  <!-- <p>La idea sería que de los presupuestos creados el usuario pueda elegir en cual realizar la carga de los comprobantes</p> -->
+  <!-- Detalle comprobantes ingresados por los usuarios -->
   <section class="container-fluid">
         <div class="row" >
           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 mg-1">
-            <table id="dataTable" class="table">
+            <table id="tableComprobantes" class="table">
               <thead>
                 <tr>
                   <th  scope="col">Fecha</th>         
@@ -96,22 +116,14 @@
                   <th  scope="col">Usuario</th>
                 </tr>
               </thead>
-              <tbody id="bodyTable"> 
-           
+              <tbody id="bodyTableComprobantes"> 
               </tbody>
             </table>
             <p id="alertComprobantes">No hay comprobantes ingresados</p>
           </div>
-
-
-
-
+    <!-- Detalle del medio para ingresar comprobantes -->
       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 mg-1">
-        <p>
-          La idea aca sería ingresar formulario para la carga de comprobantes
-        </p>
-
-
+        <h3 class="mt-1">Ingrese los comprobantes a cargar en el presupuesto</h3>
         <form class="row gy-2 gx-3 align-items-center" id="ingresoComprobante">
           <div class="col-auto">
             <label class="visually-hidden" for="ingresoFecha">Fecha
@@ -137,57 +149,76 @@
               <option value="Otros">Otros</option>
             </select>
           </div>
-          <div>
-            <input type="text" class="form-control mt-1" list="optionUsuarios" id="seleccionUsuario"  placeholder="Abonado por...">
-            <datalist id="optionUsuarios">
+           
+         <!-- funcion en desarrollo - seleccion de usuarios en funcion a usuarios selccionados  -->
+           <div class="col-auto">
+              <label class="visually-hidden" for="seleccionUsuario"></label>
+              <select class="form-select" id="seleccionUsuario">
+              <option selected>Seleccione usuario</option>
+              <div id="divUser">
+              <option id="user" value=""></option>
+              </div>
+              </select>
+            </div> 
+            <!-- <input type="text" class="form-control mt-1" list="optionUsuarios" id="seleccionUsuario"  placeholder="Abonado por..."> -->
+            <!-- <datalist id="optionUsuarios">
               <option value="Usuario 1"></option>
               <option value="Usuario 2"></option>
               <option value="Usuario 3"></option>
               <option value="Usuario 4"></option>
               <option value="Usuario 5"></option>
-            </datalist>
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-warning" id="btnComprobantes">Cargar</button>
-          </div>
+            </datalist> -->
+            <div class="col-auto">
+              <button type="submit" class="btn btn-warning" id="btnComprobantes">Cargar</button>
+            </div>
+    
         </form>  
       </div>
     </section>  
-    
-  
+    <!-- Detalle de control - Mostrar división de total de comprobantes por cada usuario - Participacion -->
   <section>
     <h2>Control</h2>
-    <p>
-      La idea de esta seccion sería informar el monto individual de cada participante. Cuando le corresponde en pariticpacíón, como su saldo, a partir de aplicar suma//resta de los comprobantes cargados
-    </p>
   </section>
+    <!-- Detalle de los comprobantes desagregado por los conceptos cargados -->
   <section class="bg-dark-subtle">
-    <h2>Conceptos</h2>
+    <h2 id="conceptos">Conceptos</h2>
       <div>
-      <h3>Alojamiento</h3>
+      <h3  id="alojamiento" >Alojamiento</h3>
       </div>
       <div>
-      <h3>Traslado</h3>
+      <h3  id="traslado" >Traslado</h3>
       </div>
       <div>
-      <h3>Salidas</h3>
+      <h3  id="salidas" >Salidas</h3>
       </div>
       <div>
-      <h3>Día a día</h3>
+      <h3  id="dia" >Día a día</h3>
       </div>
       <div>
-      <h3>Higiene</h3>
+      <h3  id="higiene" >Higiene</h3>
      </div>
       <div>
-      <h3>Otros</h3>
+      <h3  id="otros" >Otros</h3>
       </div>
   </section>
 </main>
 <footer>
 
-</footer>    
+</footer>   
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<!-- <script src="./JS/index.js"></script> -->
 <script src="./JS/dom.js"></script>
+<script src="./JS/sweet.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
