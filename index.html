@@ -23,12 +23,20 @@
         <div class="offcanvas offcanvas-end bg-dark-subtle" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Tus Gestiones</h5>
-            <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" id="btnClose" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+                <a class="nav-link active" aria-current="page" href="#">Registro</a>
+                  <form id="startSession" action="">
+                  <input id="userSession" type="text" class="form-control" placeholder="Usuario" aria-label="Usuario">
+                  <input type="password" id="Password" class="form-control" aria-describedby="descripcionPassword" placeholder="Contraseña" aria-label="password">        
+                  <span id="descripcionPassword" class="form-text">
+                    Ingrese entre 8 a 20 caracteres.
+                  </span>
+                  <button type="submit" id="btnConfirm" class="btn btn-warning btnNewParticipante">Confirmar</button>  
+                  </form>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Control</a>
@@ -49,7 +57,7 @@
             </ul>
             <form class="d-flex mt-3" role="search">
               <input class="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Search">
-              <button class="btn btn-warning" type="submit">Buscar</button>
+              <button class="btn btn-warning" type="imput">Buscar</button>
             </form>
           </div>
         </div>
@@ -84,17 +92,8 @@
       <!-- Detalle Login -->
       <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 bg-dark-subtle"></div>
       <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 bg-dark-subtle">
-        <div class="row">
-          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
-            <h5>Iniciar Sesión</h5>
-            <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
-            <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido">    
-            <input type="password" id="Password" class="form-control" aria-describedby="descripcionPassword" placeholder="Contraseña" aria-label="password">        
-            <span id="descripcionPassword" class="form-text">
-              Ingrese entre 8 a 20 caracteres.
-            </span>
-            <button class="btn btn-warning btnNewParticipante">Login</button>
-          </div>
+        <div id="sessionConfirm" class="row">
+       
         </div>
       </div>
     </div>
@@ -154,10 +153,10 @@
            <div class="col-auto">
               <label class="visually-hidden" for="seleccionUsuario"></label>
               <select class="form-select" id="seleccionUsuario">
-              <option selected>Seleccione usuario</option>
-              <div id="divUser">
-              <option id="user" value=""></option>
-              </div>
+                <option selected>Seleccione usuario</option>
+              <!-- <div id="divUser"> -->
+              <!-- <option id="user" value=""></option> -->
+              <!-- </div> -->
               </select>
             </div> 
             <!-- <input type="text" class="form-control mt-1" list="optionUsuarios" id="seleccionUsuario"  placeholder="Abonado por..."> -->
@@ -178,6 +177,9 @@
     <!-- Detalle de control - Mostrar división de total de comprobantes por cada usuario - Participacion -->
   <section>
     <h2>Control</h2>
+    <!-- <div id="divUser">
+
+    </div> -->
   </section>
     <!-- Detalle de los comprobantes desagregado por los conceptos cargados -->
   <section class="bg-dark-subtle">

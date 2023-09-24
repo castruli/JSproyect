@@ -1,16 +1,15 @@
 
 // MSJ DE BIENVENIDA A PAGINA //  
 
-
-
 Swal.fire({
   title: '¡Bienvenido!',
-  text: '',
+  text: 'Con Tu pre$upue$to llevar el control de tus gastos en tu viaje nunca fue tan sencilloo. deberas registrar los participantes y cargar tus comprobantes! Tendrás el detalle a dividir por cada uno!',
   icon: 'success',
   confirmButtonText: 'Ingresar',
   confirmButtonColor: 'orange',
   iconColor: 'orange'
 })
+
 
 // MSJ DE CARGA NUEVO USUARIO //
 
@@ -104,19 +103,25 @@ function agregarUsuarios (){
  }
 console.log(datosUsuarios)
 
-const user = datosUsuarios.map((u)=> u.nombre)
-// function cargar (name){
-//   console.log(name)
-// }
-
-// cargar (...user)
-console.log(...user)
 
 ////////////////////////////////////////////////////////////
 
 
 
 
+// const user = datosUsuarios.map((u)=> u.nombre)
+
+function agregar (){
+  seleccionUsuario.innerHTML = '<option selected>Seleccione usuario</option>';
+  datosUsuarios.forEach (function (datos) {
+    const fila = document.createElement ("option");
+    fila.innerHTML =  `
+    <option value="${datos.nombre}">${datos.nombre}</option>
+    `;
+    seleccionUsuario.appendChild(fila);  
+  });
+}
+agregar ()
 
 
 
@@ -124,6 +129,107 @@ console.log(...user)
 
 
 
+
+
+
+// VARIABLES MENU HAMBUGUESA //
+
+const startSession = document.getElementById('startSession')
+
+const btnConfirm = document.getElementById('btnConfirm')
+// VARIABLES PARTICIPANTES //
+const sessionConfirm = document.getElementById('sessionConfirm')
+const btnDeplegable = document.getElementById('offcanvasDarkNavbar')
+
+
+startSession.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userSession = startSession.querySelector('userSession')
+  cargarNombre ()
+
+})
+
+
+function cargarNombre (){
+  const userLogin = document.createElement("h2");
+  userLogin.innerHTML =`
+    <h2 class="bg-dark-subtle">Bienvenido ${userSession.value}</h2>
+    `;
+  sessionConfirm.appendChild(userLogin);
+  startSession.style.display = "none";
+  setTimeout(function () { 
+     }, 500);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const user = datosUsuarios.map((u)=> u.nombre)
+
+// function agregar (){
+// seleccionUsuario.innerHTML = '<option selected>Seleccione usuario</option>';
+// user.forEach (function (u) {
+// const fila = document.createElement ("option");
+// fila.innerHTML =  `
+//  <option value="${u}">${u}</option>
+// `;
+// seleccionUsuario.appendChild(fila);  
+// });
+// }
+// agregar ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const user = datosUsuarios.map((u)=> u.nombre)
+// console.log (user)
+// function prueba (){
+
+// }
+
+
+// for (let i = 0; i < user.length; i++) {
+//   const element = user[i];
+  
+//   console.log (element)
+// }
 
 
 
