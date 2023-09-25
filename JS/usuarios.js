@@ -6,7 +6,8 @@ const tbodyUsuarios = tableUsuarios.querySelector('tbody');
 const alertUsuarios = document.getElementById('alertUsuarios');
 const imputParticipante = document.getElementById('imputParticipante')
 const startSession = document.getElementById('startSession')
-
+const seccionControl = document.getElementById('seccionControl')
+const trTable = seccionControl.querySelector('tr')
 
 //CLASS USUARIOS
 class ingresoUsuarios {
@@ -26,9 +27,23 @@ const jsonUsuarios = localStorage.getItem('usuarios')
 agregarUsuarios ()
 
 
+//INICIO SESIÓN
+startSession.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userSession = startSession.querySelector('userSession')
+  localStorage.setItem("usuarioLogeado", userSession)
+  userLogeado ()
+})
 
-
-
+//FUNCION DE LOGIN USUARIO
+function userLogeado (){
+  const userLogin = document.createElement("h2");
+  userLogin.innerHTML =`
+    <h2 class="bg-dark-subtle">Bienvenido ${userSession.value}</h2>
+    `;
+  sessionConfirm.appendChild(userLogin);
+  startSession.style.display = "none";
+}
 
 
 //FORMULARIO DE CARGA USUARIOS 
@@ -70,6 +85,8 @@ imputParticipante.addEventListener('click', (u) => {
     cbu.value = '';
     //CARGA DE USUARIOS
     agregarUsuarios ()
+    agregarResponsable ()
+    titleTable ()
   })
 })
 
@@ -95,6 +112,8 @@ function agregarUsuarios (){
   }
 }
 console.log(datosUsuarios)
+agregarResponsable ()
+titleTable ()
 
 //FUNCION LIMITANTE USUARIO RESPONSABLE DEL GASTOS
 function agregarResponsable (){
@@ -109,26 +128,22 @@ function agregarResponsable (){
     seleccionUsuario.appendChild(fila);  
   });
 }
-agregarResponsable ()
 
-//INICIO SESIÓN
-startSession.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const userSession = startSession.querySelector('userSession')
-  localStorage.setItem("usuarioLogeado", userSession)
-  userLogeado ()
-})
 
-//FUNCION DE LOGIN USUARIO
-function userLogeado (){
-  const userLogin = document.createElement("h2");
-  userLogin.innerHTML =`
-    <h2 class="bg-dark-subtle">Bienvenido ${userSession.value}</h2>
+
+//FUNCION TABLE CONTROL POR USUARIO
+function titleTable (){
+  //RESET OPCIONES
+  trTable.innerHTML = '';
+  //BUSQUEDA DE LOS USUARIOS DISPONIBLES
+  datosUsuarios.forEach (function (datos) {
+    const title = document.createElement ("th");
+    title.innerHTML =`
+    <th class="bg-dark-subtle" scope="col">${datos.nombre}</th>
     `;
-  sessionConfirm.appendChild(userLogin);
-  startSession.style.display = "none";
+    trTable.appendChild(title);  
+  });
 }
-
 
 
 
