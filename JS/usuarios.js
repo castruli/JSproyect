@@ -8,6 +8,32 @@ const imputParticipante = document.getElementById('imputParticipante')
 const startSession = document.getElementById('startSession')
 const seccionControl = document.getElementById('seccionControl')
 const trTable = seccionControl.querySelector('tr')
+const userSession = localStorage.getItem('usuarioLogeado');
+
+// SIMULACION REGISTRACION EN CUENTA
+if (userSession) {
+  userLogeado(userSession);  
+} else {
+  startSession.style.display = "block";
+}
+  //INICIO SESIÓN
+startSession.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userSessionInput = document.getElementById('userSessionInput');
+  const newUserSession = userSessionInput.value;
+  localStorage.setItem("usuarioLogeado", newUserSession)
+  userLogeado (newUserSession)
+})
+//FUNCION DE LOGIN USUARIO
+function userLogeado (user){
+  const userLogin = document.createElement("h2");
+  userLogin.innerHTML =`
+    <h2 class="bg-dark-subtle">Bienvenido ${user}</h2>
+    `;
+  sessionConfirm.appendChild(userLogin);
+  startSession.style.display = "none";
+}
+
 
 //CLASS USUARIOS
 class ingresoUsuarios {
@@ -27,23 +53,9 @@ const jsonUsuarios = localStorage.getItem('usuarios')
 agregarUsuarios ()
 
 
-//INICIO SESIÓN
-startSession.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const userSession = startSession.querySelector('userSession')
-  localStorage.setItem("usuarioLogeado", userSession)
-  userLogeado ()
-})
 
-//FUNCION DE LOGIN USUARIO
-function userLogeado (){
-  const userLogin = document.createElement("h2");
-  userLogin.innerHTML =`
-    <h2 class="bg-dark-subtle">Bienvenido ${userSession.value}</h2>
-    `;
-  sessionConfirm.appendChild(userLogin);
-  startSession.style.display = "none";
-}
+
+
 
 
 //FORMULARIO DE CARGA USUARIOS 
