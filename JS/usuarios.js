@@ -53,11 +53,6 @@ const jsonUsuarios = localStorage.getItem('usuarios')
 agregarUsuarios ()
 
 
-
-
-
-
-
 //FORMULARIO DE CARGA USUARIOS 
 imputParticipante.addEventListener('click', (u) => {
   u.preventDefault()
@@ -140,8 +135,6 @@ function agregarResponsable (){
     seleccionUsuario.appendChild(fila);  
   });
 }
-
-
 
 //FUNCION TABLE CONTROL POR USUARIO
 function titleTable (){
