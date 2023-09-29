@@ -146,7 +146,7 @@ function titleTable (){
     title.innerHTML =`
     <th class="bg-dark-subtle" scope="col">${datos.nombre}</th>
     `;
-    trTable.appendChild(title);  
+    tableTr.appendChild(title);  
   });
 }
 

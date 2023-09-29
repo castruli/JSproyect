@@ -9,6 +9,10 @@ const tableComprobantes = document.getElementById('tableComprobantes');
 const tbodyComprobantes = tableComprobantes.querySelector('tbody');
 const alertComprobantes = document.getElementById('alertComprobantes')
 
+
+
+
+
 //CLASS COMPROBANTES
 class ingresoComprobantes {
     constructor (fecha, importe, categoria,usuario){
@@ -40,7 +44,15 @@ formComprobante.addEventListener('submit', (e) => {
     seleccionUsuario.value = '';
     //CARGA DE COMPROBANTES
     agregarComprobante ()
+
+
 })
+
+
+
+
+
+
 
 //FUNCION CARGA DE COMPROBANTES
 function agregarComprobante (){
@@ -65,4 +77,11 @@ function agregarComprobante (){
     }
 }
 console.log(datosComprobantes)
+
+
+
+
+
+
+
 
