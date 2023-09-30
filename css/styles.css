@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .btnNewParticipante {
   margin-left: 40%;
   margin-top: 1%;
@@ -22,6 +23,45 @@ main section div p {
 .txtCenter {
   text-align: center;
   padding: 1%;
+}
+
+/* Configuracion alert Inicio sesion */
+.descripcionAlert2 {
+  width: 240px; /* Ancho personalizado */
+  height: 240px; /* Altura personalizada */
+  position: absolute; /* Establecer la posición fija para que no se mueva con el desplazamiento */
+  top: 5%; /* Ajustar la posición verticalmente en el centro */
+  left: 80%; /* Ajustar la posición horizontalmente en el centro */
+  border: 2px solid #333; /* Borde personalizado */
+  z-index: -1; /* Z-index para estar en la parte superior */
+  padding: 20px; /* Espaciado interno */
+  text-align: right; /* Alineación del contenido */
+}
+
+/* Configuracion alert ingreso usuarios */
+.descripcionAlert3 {
+  width: 240px; /* Ancho personalizado */
+  height: 240px; /* Altura personalizada */
+  position: absolute; /* Establecer la posición fija para que no se mueva con el desplazamiento */
+  top: 22%; /* Ajustar la posición verticalmente en el centro */
+  left: 25%; /* Ajustar la posición horizontalmente en el centro */
+  border: 2px solid #333; /* Borde personalizado */
+  z-index: -1; /* Z-index para estar en la parte superior */
+  padding: 20px; /* Espaciado interno */
+  text-align: right; /* Alineación del contenido */
+}
+
+/* Configuracion alert ingreso comprobantes */
+.descripcionAlert4 {
+  width: 240px; /* Ancho personalizado */
+  height: 240px; /* Altura personalizada */
+  position: absolute; /* Establecer la posición fija para que no se mueva con el desplazamiento */
+  top: 45%; /* Ajustar la posición verticalmente en el centro */
+  left: 60%; /* Ajustar la posición horizontalmente en el centro */
+  border: 2px solid #333; /* Borde personalizado */
+  z-index: -1; /* Z-index para estar en la parte superior */
+  padding: 20px; /* Espaciado interno */
+  text-align: right; /* Alineación del contenido */
 }
 
 /*# sourceMappingURL=styles.css.map */

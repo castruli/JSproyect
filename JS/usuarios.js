@@ -10,6 +10,8 @@ const seccionControl = document.getElementById('seccionControl')
 const trTable = seccionControl.querySelector('tr')
 const userSession = localStorage.getItem('usuarioLogeado');
 
+
+
 // SIMULACION REGISTRACION EN CUENTA
 if (userSession) {
   userLogeado(userSession);  
@@ -94,6 +96,7 @@ imputParticipante.addEventListener('click', (u) => {
     agregarUsuarios ()
     agregarResponsable ()
     titleTable ()
+   
   })
 })
 
@@ -150,6 +153,28 @@ function titleTable (){
   });
 }
 
+const pruebaUsuario = datosUsuarios.map(n => n.nombre)
+function usuariosControl (){
+for (let i = 0; i < pruebaUsuario.length; i++) {
+  busquedaUsuario(pruebaUsuario[i]) 
+  function busquedaUsuario (us){
+      let total = 0;
+      const usuarioBuscado = datosComprobantes.filter( u => u.usuario === us);
+      const importesUsuarios = usuarioBuscado.map(v => parseFloat(v.importe)) 
+      importesUsuarios.forEach(p => { total = total + p })
+      // console.log(pruebaUsuario[i])
+      // console.log(usuarioBuscado)
+      // console.log(total) 
+      const acumuladoUsuario = document.createElement ("td");
+      acumuladoUsuario.innerHTML =`
+      <td>${total}</td>
+      `;
+      tbodyIngresosInner.appendChild(acumuladoUsuario);  
+      
+    
+  }
+}
+}
 
 
 
@@ -158,7 +183,7 @@ function titleTable (){
 
 
 
-
+  
 
 
 

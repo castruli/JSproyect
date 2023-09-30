@@ -9,8 +9,13 @@ const tableComprobantes = document.getElementById('tableComprobantes');
 const tbodyComprobantes = tableComprobantes.querySelector('tbody');
 const alertComprobantes = document.getElementById('alertComprobantes')
 
-
-
+// DOM CONTROL
+const tableXingresos = document.getElementById ('tableXingresos');
+const tableXdestino = document.getElementById('tableXdestino');
+const tbodyDestino = tableXdestino.querySelector('tbody');
+const tbodyIngresos = tableXingresos.querySelector('tbody');
+const btnComprobantes = document.getElementById('btnComprobantes')
+const categorias = ['Alojamiento', 'Traslado','Salidas','Dia','Higiene','Otros','Saldo']
 
 
 //CLASS COMPROBANTES
@@ -42,15 +47,14 @@ formComprobante.addEventListener('submit', (e) => {
     ingresoImporte.value = '';
     ingresoCategoria.value = '';
     seleccionUsuario.value = '';
+    tbodyDestino.innerHTML = '';
+    tbodyIngresos.innerHTML='';
     //CARGA DE COMPROBANTES
     agregarComprobante ()
-
-
+    agregarControl ()
+    usuariosControl ()
+   
 })
-
-
-
-
 
 
 
@@ -78,10 +82,27 @@ function agregarComprobante (){
 }
 console.log(datosComprobantes)
 
+// FUNCION AGREGAR COMPROBANTES A SECCION CONTROL
 
-
-
-
-
-
+function agregarControl () {
+    for (let i = 0; i < categorias.length; i++) {
+        busquedaCategoria(categorias[i]);
+        function busquedaCategoria (cate){
+            let total = 0;
+            const cateBuscada = datosComprobantes.filter( c => c.categoria === cate);
+            const importesCategoria = cateBuscada.map(v => parseFloat(v.importe)) 
+            importesCategoria.forEach(p => { total = total + p })
+            // console.log(categorias[i])
+            // console.log(cateBuscada)
+            // console.log(total)   
+            const datoCategoria = document.createElement ("td");
+            datoCategoria.innerHTML =`
+            <td>${total}</td>
+            `;
+            tbodyDestinoInner.appendChild(datoCategoria);  
+        }
+    }
+}
+agregarControl ()
+usuariosControl ()
 
