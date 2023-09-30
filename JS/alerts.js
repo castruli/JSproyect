@@ -1,16 +1,18 @@
-
-
+// MENSAJE DE BIENVENIDA + EXPLICACION DE PAGINA
+// LIMITANTE A PRIMER INGRESO UTILIZANDO LOCALSTORAGE
+// UTILIZACION DE PROMISE PARA SECUENCIA DE INDICACIONES AL CLIENTE
 if (!localStorage.getItem('msjBienvendia')) {
   function promesaTimer() {
+    // MENSAJE DE BIENVENIDA PRINCIPAL CON EXPLICACION DEL SITIO
     return new Promise((resolve) => {
       Swal.fire({
         title: '¡Bienvenido!',
-        text: 'Con Tu pre$upue$to llevar el control de tus gastos en tu viaje nunca fue tan sencilloo. deberas registrar los participantes y cargar tus comprobantes! Tendrás el detalle a dividir por cada uno!',
+        text: 'Con Tu pre$upue$to podrás llevar el control de tus gastos durante tu viaje. Solamente tenes que cargar los participantes y los gastos de cada uno!',
         icon: 'success',
         confirmButtonText: 'Ingresar',
         confirmButtonColor: 'orange',
         iconColor: 'orange',
-        timer: 1000,
+        timer: 10000,
         timerProgressBar: true,
         onBeforeOpen: () => {
           Swal.showLoading();
@@ -23,12 +25,12 @@ if (!localStorage.getItem('msjBienvendia')) {
       });
     });
   }
-  
+  // MENSAJE INDICATIVO DE LOGIN
   function alert2() {
     return new Promise((resolve) => {
       setTimeout(() => {
         Swal.fire({
-          text: 'Desde el menu lateral podrás iniciar sesión',
+          text: 'Desde el MENU LATERAL podrás inciar tu sesión',
           confirmButtonColor: 'orange',
           textColor: 'white',
           customClass: {
@@ -40,15 +42,15 @@ if (!localStorage.getItem('msjBienvendia')) {
         }).then(() =>{
           alert3 ()
         });
-      }, 1000);
+      }, 2000);
     });
   }
-  
+  // MENSAJE INDICATIVO DE CARGA DE PARTICIPANTES
   function alert3() {
     return new Promise((resolve) => {
       setTimeout(() => {
         Swal.fire({
-          text: 'Desde NUEVO PARTICIPANTE ingresaran quien carga los gastos',
+          text: 'Desde NUEVO PARTICIPANTE añadirás a quienes viajan',
           confirmButtonColor: 'orange',
           textColor: 'white',
           customClass: {
@@ -60,15 +62,15 @@ if (!localStorage.getItem('msjBienvendia')) {
         }).then(() =>{
           alert4 ()
         });
-      }, 1000);
+      }, 2000);
     });
   }
-  
+  // MENSAJE INDICATIVO DE CARGA DE COMPROBANTES
   function alert4() {
     return new Promise((resolve) => {
       setTimeout(() => {
         Swal.fire({
-          text: 'Desde NUEVO COMPROBANTE podrás ingresar los gastos',
+          text: 'Desde NUEVO COMPROBANTE ingresa los gastos de cada uno',
           confirmButtonColor: 'orange',
           textColor: 'white',
           customClass: {
@@ -77,7 +79,7 @@ if (!localStorage.getItem('msjBienvendia')) {
         }).then(() => {
           resolve();
         });
-      }, 1000);
+      }, 2000);
     });
   }
   promesaTimer();

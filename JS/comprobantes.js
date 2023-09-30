@@ -9,7 +9,7 @@ const tableComprobantes = document.getElementById('tableComprobantes');
 const tbodyComprobantes = tableComprobantes.querySelector('tbody');
 const alertComprobantes = document.getElementById('alertComprobantes')
 
-// DOM CONTROL
+// DOM CONTROL 
 const tableXingresos = document.getElementById ('tableXingresos');
 const tableXdestino = document.getElementById('tableXdestino');
 const tbodyDestino = tableXdestino.querySelector('tbody');
@@ -28,7 +28,7 @@ class ingresoComprobantes {
     }
 }
 
-//LOCALSTORAGE COMPROBANTES
+//ALMACENAMIENTO DE COMPROBANTES CARGADOS
 let datosComprobantes = []
 const jsonComprobantes = localStorage.getItem('comprobantes')
     if (jsonComprobantes){
@@ -49,16 +49,15 @@ formComprobante.addEventListener('submit', (e) => {
     seleccionUsuario.value = '';
     tbodyDestino.innerHTML = '';
     tbodyIngresos.innerHTML='';
-    //CARGA DE COMPROBANTES
+    //CARGA DE COMPROBANTES + ACTUALIZACION DE TABLAS CONTROL
     agregarComprobante ()
     agregarControl ()
     usuariosControl ()
-   
 })
+agregarControl ()
+usuariosControl ()
 
-
-
-//FUNCION CARGA DE COMPROBANTES
+//FUNCION PARA CARGA DE COMPROBANTES
 function agregarComprobante (){
     //RESET TABLA
     tbodyComprobantes.innerHTML = '';
@@ -92,9 +91,6 @@ function agregarControl () {
             const cateBuscada = datosComprobantes.filter( c => c.categoria === cate);
             const importesCategoria = cateBuscada.map(v => parseFloat(v.importe)) 
             importesCategoria.forEach(p => { total = total + p })
-            // console.log(categorias[i])
-            // console.log(cateBuscada)
-            // console.log(total)   
             const datoCategoria = document.createElement ("td");
             datoCategoria.innerHTML =`
             <td>${total}</td>
@@ -103,6 +99,3 @@ function agregarControl () {
         }
     }
 }
-agregarControl ()
-usuariosControl ()
-

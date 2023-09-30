@@ -11,8 +11,7 @@ const trTable = seccionControl.querySelector('tr')
 const userSession = localStorage.getItem('usuarioLogeado');
 
 
-
-// SIMULACION REGISTRACION EN CUENTA
+// SIMULACION REGISTRACION EN CUENTA 
 if (userSession) {
   userLogeado(userSession);  
 } else {
@@ -26,7 +25,7 @@ startSession.addEventListener('submit', (e) => {
   localStorage.setItem("usuarioLogeado", newUserSession)
   userLogeado (newUserSession)
 })
-//FUNCION DE LOGIN USUARIO
+//FUNCION MSJ BIENVENIDA A LOGIN REGISTRADO
 function userLogeado (user){
   const userLogin = document.createElement("h2");
   userLogin.innerHTML =`
@@ -36,8 +35,7 @@ function userLogeado (user){
   startSession.style.display = "none";
 }
 
-
-//CLASS USUARIOS
+//CLASS PARA INGRESO USUARIOS
 class ingresoUsuarios {
   constructor (nombre, banco, cbu){
       this.nombre = nombre
@@ -46,7 +44,7 @@ class ingresoUsuarios {
   }
 } 
 
-//LOCALSTORAGE USUARIOS
+//ALMACENAMIENTO DE USUARIOS CARGADOS
 let datosUsuarios = []
 const jsonUsuarios = localStorage.getItem('usuarios')
   if (jsonUsuarios){
@@ -77,12 +75,12 @@ imputParticipante.addEventListener('click', (u) => {
     allowOutsideClick: false,
     focusConfirm: false,
   })
-  //DOM FORMULARIO USUARIO
+  //DOM FORMULARIO USUARIO DESDE SWEETALERT2
   const nombre = document.getElementById('ingresoNombreU');
   const banco = document.getElementById('ingresoBancoU');
   const cbu = document.getElementById('ingresoCBUU');
   const formUsuarios = document.getElementById('formUsuario');
-  //SUBMIT FORMUALRIO-ENVIO
+  //SUBMIT FORMUALRIO-ENVIO DESDE SWEETALERT2 
   formUsuarios.addEventListener('submit', (event) => {
     event.preventDefault();
     const usuario = new ingresoUsuarios (nombre.value, banco.value, cbu.value)
@@ -92,19 +90,20 @@ imputParticipante.addEventListener('click', (u) => {
     nombre.value = '';
     banco.value = '';
     cbu.value = '';
-    //CARGA DE USUARIOS
+    //CARGA DE USUARIOS + ACTUALIZACIONES TABLAS
     agregarUsuarios ()
     agregarResponsable ()
     titleTable ()
-   
   })
 })
+agregarResponsable ()
+titleTable ()
 
-//FUNCION CARGA DE USUARIOS
+//FUNCION PARA LA CARGA DE USUARIOS EN TABLA DE PARTICIPANTES
 function agregarUsuarios (){
- //RESET TABLA USUARIO CARGADOS//
+ //RESET DE TABLA //
  tbodyUsuarios.innerHTML = '';
- // DATOS A CARGAR EN LA TABLA DE USUARIOS //
+ // DATOS A CARGAR EN LA TABLA DE PARTICIPANTES //
  datosUsuarios.forEach ( function (dato){
   const newUsuario = document.createElement("tr");
   newUsuario.innerHTML =`
@@ -122,8 +121,7 @@ function agregarUsuarios (){
   }
 }
 console.log(datosUsuarios)
-agregarResponsable ()
-titleTable ()
+
 
 //FUNCION LIMITANTE USUARIO RESPONSABLE DEL GASTOS
 function agregarResponsable (){
@@ -139,7 +137,7 @@ function agregarResponsable (){
   });
 }
 
-//FUNCION TABLE CONTROL POR USUARIO
+//FUNCION PARA AGREGAR LOS PARTICIPANTES A CONTRAL DE INGRESOS
 function titleTable (){
   //RESET OPCIONES
   trTable.innerHTML = '';
@@ -147,13 +145,19 @@ function titleTable (){
   datosUsuarios.forEach (function (datos) {
     const title = document.createElement ("th");
     title.innerHTML =`
-    <th class="bg-dark-subtle" scope="col">${datos.nombre}</th>
+    <th scope="col">${datos.nombre}</th>
     `;
     tableTr.appendChild(title);  
   });
 }
 
+//FUNCION PARA AGREGAR LOS PARTICIPANTES A CONTROL DE INGRESOS
+//BUSQUEDA DE USUARIOS CARGADOS DESDE DATOS DEL USUARIO
 const pruebaUsuario = datosUsuarios.map(n => n.nombre)
+// FUNCION DE CONTROL - RECORRO NUEVO ARRAY DE USUARIO CARGADOS
+// SE AGREGA EL TOTAL DE GASTOS CARGADOS AL MOMENTO POR EL USUARIO
+
+// FALTANTE: ACTUALIZACION DE TABLA. AL CARGAR UN NUEVO COMPROBANTE ESTE VALOR NO SE ACTUALIZA AUTOMATICAMENTE.
 function usuariosControl (){
 for (let i = 0; i < pruebaUsuario.length; i++) {
   busquedaUsuario(pruebaUsuario[i]) 
@@ -162,16 +166,11 @@ for (let i = 0; i < pruebaUsuario.length; i++) {
       const usuarioBuscado = datosComprobantes.filter( u => u.usuario === us);
       const importesUsuarios = usuarioBuscado.map(v => parseFloat(v.importe)) 
       importesUsuarios.forEach(p => { total = total + p })
-      // console.log(pruebaUsuario[i])
-      // console.log(usuarioBuscado)
-      // console.log(total) 
       const acumuladoUsuario = document.createElement ("td");
       acumuladoUsuario.innerHTML =`
       <td>${total}</td>
       `;
       tbodyIngresosInner.appendChild(acumuladoUsuario);  
-      
-    
   }
 }
 }
