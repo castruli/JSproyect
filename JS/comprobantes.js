@@ -9,6 +9,8 @@ const tableComprobantes = document.getElementById('tableComprobantes');
 const tbodyComprobantes = tableComprobantes.querySelector('tbody');
 const alertComprobantes = document.getElementById('alertComprobantes')
 
+
+
 // DOM CONTROL 
 const tableXingresos = document.getElementById ('tableXingresos');
 const tableXdestino = document.getElementById('tableXdestino');
@@ -16,7 +18,7 @@ const tbodyDestino = tableXdestino.querySelector('tbody');
 const tbodyIngresos = tableXingresos.querySelector('tbody');
 const btnComprobantes = document.getElementById('btnComprobantes')
 const categorias = ['Alojamiento', 'Traslado','Salidas','Dia','Higiene','Otros','Saldo']
-
+const btnRecarga = document.getElementById('btnRecarga')
 
 //CLASS COMPROBANTES
 class ingresoComprobantes {
@@ -54,8 +56,6 @@ formComprobante.addEventListener('submit', (e) => {
     agregarControl ()
     usuariosControl ()
 })
-agregarControl ()
-usuariosControl ()
 
 //FUNCION PARA CARGA DE COMPROBANTES
 function agregarComprobante (){
@@ -80,6 +80,10 @@ function agregarComprobante (){
     }
 }
 console.log(datosComprobantes)
+
+
+agregarControl ()
+usuariosControl ()
 
 // FUNCION AGREGAR COMPROBANTES A SECCION CONTROL
 
