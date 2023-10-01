@@ -11,6 +11,7 @@ const alertComprobantes = document.getElementById('alertComprobantes')
 
 
 
+
 // DOM CONTROL 
 const tableXingresos = document.getElementById ('tableXingresos');
 const tableXdestino = document.getElementById('tableXdestino');
