@@ -96,6 +96,7 @@ imputParticipante.addEventListener('click', (u) => {
     titleTable ()
   })
 })
+agregarUsuarios ()
 agregarResponsable ()
 titleTable ()
 

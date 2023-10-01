@@ -7,7 +7,7 @@ if (!localStorage.getItem('msjBienvendia')) {
     return new Promise((resolve) => {
       Swal.fire({
         title: '¡Bienvenido!',
-        text: 'Con Tu pre$upue$to podrás llevar el control de tus gastos durante tu viaje. Solamente tenes que cargar los participantes y los gastos de cada uno!',
+        text: 'Con Tu pre$upue$to podrás llevar el control de tus gastos durante tu viaje. Seguí los pasos!',
         icon: 'success',
         confirmButtonText: 'Ingresar',
         confirmButtonColor: 'orange',
@@ -42,7 +42,7 @@ if (!localStorage.getItem('msjBienvendia')) {
         }).then(() =>{
           alert3 ()
         });
-      }, 2000);
+      }, 1000);
     });
   }
   // MENSAJE INDICATIVO DE CARGA DE PARTICIPANTES
@@ -62,7 +62,7 @@ if (!localStorage.getItem('msjBienvendia')) {
         }).then(() =>{
           alert4 ()
         });
-      }, 2000);
+      }, 500);
     });
   }
   // MENSAJE INDICATIVO DE CARGA DE COMPROBANTES
@@ -79,7 +79,7 @@ if (!localStorage.getItem('msjBienvendia')) {
         }).then(() => {
           resolve();
         });
-      }, 2000);
+      }, 500);
     });
   }
   promesaTimer();

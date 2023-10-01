@@ -17,8 +17,8 @@ const tableXdestino = document.getElementById('tableXdestino');
 const tbodyDestino = tableXdestino.querySelector('tbody');
 const tbodyIngresos = tableXingresos.querySelector('tbody');
 const btnComprobantes = document.getElementById('btnComprobantes')
-const categorias = ['Alojamiento', 'Traslado','Salidas','Dia','Higiene','Otros','Saldo']
-const btnRecarga = document.getElementById('btnRecarga')
+const categorias = ['Alojamiento', 'Traslado','Salidas','Dia','Higiene','Otros',]
+
 
 //CLASS COMPROBANTES
 class ingresoComprobantes {
@@ -41,20 +41,48 @@ agregarComprobante ()
 //FORMULARIO DE CARGA COMPROBANTES 
 formComprobante.addEventListener('submit', (e) => {
     e.preventDefault()
-    const comprobante = new ingresoComprobantes (ingresoFecha.value, ingresoImporte.value, ingresoCategoria.value, seleccionUsuario.value)
-    datosComprobantes.push(comprobante)
-    localStorage.setItem('comprobantes', JSON.stringify(datosComprobantes))
-    //RESEST IMPUT FORMULARIO
-    ingresoFecha.value = '';
-    ingresoImporte.value = '';
-    ingresoCategoria.value = '';
-    seleccionUsuario.value = '';
-    tbodyDestino.innerHTML = '';
-    tbodyIngresos.innerHTML='';
-    //CARGA DE COMPROBANTES + ACTUALIZACION DE TABLAS CONTROL
-    agregarComprobante ()
-    agregarControl ()
-    usuariosControl ()
+    // RESTRICCION CARGA DATOS
+    const formFecha = /^\d{2}\/\d{2}\/\d{4}$/;
+    const controlIngresoFecha = ingresoFecha.value;
+    const controlIngresoImporte = ingresoImporte.value;
+    const controlIngresoCategoria = ingresoCategoria.value;
+    const controlSeleccionUsuario = seleccionUsuario.value;
+    if (controlIngresoFecha === '', controlIngresoImporte === '', controlIngresoCategoria === '', controlSeleccionUsuario === '') {
+        setTimeout(() => {
+            Swal.fire({
+              text: 'Ingrese campos válidos',
+              confirmButtonColor: 'orange',
+              textColor: 'white',
+              timer:2000,
+           })
+        },);
+    } else {
+        const comprobante = new ingresoComprobantes (ingresoFecha.value, ingresoImporte.value, ingresoCategoria.value, seleccionUsuario.value)
+        datosComprobantes.push(comprobante)
+        localStorage.setItem('comprobantes', JSON.stringify(datosComprobantes))
+        //RESEST IMPUT FORMULARIO
+        ingresoFecha.value = '';
+        ingresoImporte.value = '';
+        ingresoCategoria.value = '';
+        seleccionUsuario.value = '';
+        tbodyDestino.innerHTML = '';
+        tbodyIngresos.innerHTML='';
+        //CARGA DE COMPROBANTES + ACTUALIZACION DE TABLAS CONTROL
+        if (comprobante.fecha && comprobante.importe && comprobante.categoria && comprobante.usuario) {
+            agregarComprobante();
+          } else {
+            setTimeout(() => {
+                Swal.fire({
+                  text: 'No se agregó el comprobante debido a datos incompletos',
+                  confirmButtonColor: 'orange',
+                  textColor: 'white',
+                  timer:2000,
+               })
+            },);
+          }
+        agregarControl ()
+        usuariosControl ()
+    }
 })
 
 //FUNCION PARA CARGA DE COMPROBANTES
