@@ -71,14 +71,7 @@ formComprobante.addEventListener('submit', (e) => {
             //CARGA DE COMPROBANTES + ACTUALIZACION DE TABLAS CONTROL
             agregarComprobante();
             agregarControl ()
-            usuariosControl ()
-
-
-
-
-
-
-            
+            usuariosControl ()           
           } else {
             setTimeout(() => {
                 Swal.fire({
@@ -88,14 +81,7 @@ formComprobante.addEventListener('submit', (e) => {
                   timer:2000,
                })
             },);
-          }
-
-
-
-
-
-       
-     
+          }   
     }
 })
 
