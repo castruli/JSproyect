@@ -157,7 +157,6 @@ function titleTable (){
 const pruebaUsuario = datosUsuarios.map(n => n.nombre)
 // FUNCION DE CONTROL - RECORRO NUEVO ARRAY DE USUARIO CARGADOS
 // SE AGREGA EL TOTAL DE GASTOS CARGADOS AL MOMENTO POR EL USUARIO
-
 // FALTANTE: ACTUALIZACION DE TABLA. AL CARGAR UN NUEVO COMPROBANTE ESTE VALOR NO SE ACTUALIZA AUTOMATICAMENTE.
 function usuariosControl (){
 for (let i = 0; i < pruebaUsuario.length; i++) {

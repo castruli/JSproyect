@@ -43,7 +43,6 @@ agregarComprobante ()
 formComprobante.addEventListener('submit', (e) => {
     e.preventDefault()
     // RESTRICCION CARGA DATOS
-    const formFecha = /^\d{2}\/\d{2}\/\d{4}$/;
     const controlIngresoFecha = ingresoFecha.value;
     const controlIngresoImporte = ingresoImporte.value;
     const controlIngresoCategoria = ingresoCategoria.value;
@@ -58,6 +57,7 @@ formComprobante.addEventListener('submit', (e) => {
            })
         },);
     } else {
+        if (comprobante.fecha && comprobante.importe && comprobante.categoria && comprobante.usuario) {
         const comprobante = new ingresoComprobantes (ingresoFecha.value, ingresoImporte.value, ingresoCategoria.value, seleccionUsuario.value)
         datosComprobantes.push(comprobante)
         localStorage.setItem('comprobantes', JSON.stringify(datosComprobantes))
@@ -69,9 +69,10 @@ formComprobante.addEventListener('submit', (e) => {
         tbodyDestino.innerHTML = '';
         tbodyIngresos.innerHTML='';
         //CARGA DE COMPROBANTES + ACTUALIZACION DE TABLAS CONTROL
-        if (comprobante.fecha && comprobante.importe && comprobante.categoria && comprobante.usuario) {
-            agregarComprobante();
-          } else {
+        agregarComprobante();
+        agregarControl ()
+        usuariosControl ()   
+        } else {
             setTimeout(() => {
                 Swal.fire({
                   text: 'No se agregó el comprobante debido a datos incompletos',
@@ -80,12 +81,9 @@ formComprobante.addEventListener('submit', (e) => {
                   timer:2000,
                })
             },);
-          }
-        agregarControl ()
-        usuariosControl ()
+        }  
     }
 })
-
 //FUNCION PARA CARGA DE COMPROBANTES
 function agregarComprobante (){
     //RESET TABLA
