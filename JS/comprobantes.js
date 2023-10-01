@@ -57,22 +57,29 @@ formComprobante.addEventListener('submit', (e) => {
            })
         },);
     } else {
+        const comprobante = new ingresoComprobantes (ingresoFecha.value, ingresoImporte.value, ingresoCategoria.value, seleccionUsuario.value);
         if (comprobante.fecha && comprobante.importe && comprobante.categoria && comprobante.usuario) {
-        const comprobante = new ingresoComprobantes (ingresoFecha.value, ingresoImporte.value, ingresoCategoria.value, seleccionUsuario.value)
-        datosComprobantes.push(comprobante)
-        localStorage.setItem('comprobantes', JSON.stringify(datosComprobantes))
-        //RESEST IMPUT FORMULARIO
-        ingresoFecha.value = '';
-        ingresoImporte.value = '';
-        ingresoCategoria.value = '';
-        seleccionUsuario.value = '';
-        tbodyDestino.innerHTML = '';
-        tbodyIngresos.innerHTML='';
-        //CARGA DE COMPROBANTES + ACTUALIZACION DE TABLAS CONTROL
-        agregarComprobante();
-        agregarControl ()
-        usuariosControl ()   
-        } else {
+            datosComprobantes.push(comprobante)
+            localStorage.setItem('comprobantes', JSON.stringify(datosComprobantes))
+            //RESEST IMPUT FORMULARIO
+            ingresoFecha.value = '';
+            ingresoImporte.value = '';
+            ingresoCategoria.value = '';
+            seleccionUsuario.value = '';
+            tbodyDestino.innerHTML = '';
+            tbodyIngresos.innerHTML='';
+            //CARGA DE COMPROBANTES + ACTUALIZACION DE TABLAS CONTROL
+            agregarComprobante();
+            agregarControl ()
+            usuariosControl ()
+
+
+
+
+
+
+            
+          } else {
             setTimeout(() => {
                 Swal.fire({
                   text: 'No se agregó el comprobante debido a datos incompletos',
@@ -81,9 +88,17 @@ formComprobante.addEventListener('submit', (e) => {
                   timer:2000,
                })
             },);
-        }  
+          }
+
+
+
+
+
+       
+     
     }
 })
+
 //FUNCION PARA CARGA DE COMPROBANTES
 function agregarComprobante (){
     //RESET TABLA
